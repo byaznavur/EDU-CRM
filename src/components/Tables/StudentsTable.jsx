@@ -1,6 +1,7 @@
 import { Table } from "react-bootstrap";
-
-const StudentsTable = () => {
+import PropTypes from "prop-types";
+import StudentsCard from "../Cards/StudentsCard";
+const StudentsTable = ({ students, deleteStudent, editStudent }) => {
   return (
     <Table striped bordered hover className="mt-3">
       <thead>
@@ -14,20 +15,32 @@ const StudentsTable = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>React JS</td>
-          <td>12</td>
-          <td className="text-center">
-            <button className="btn btn-primary">Edit</button>{" "}
-            <button className="btn btn-danger">Delete</button>
-          </td>
-        </tr>
+        {students.length !== 0 ? (
+          students.map((student, i) => (
+            <StudentsCard
+              {...student}
+              order={i + 1}
+              key={student.id}
+              editStudent={editStudent}
+              deleteStudent={deleteStudent}
+            />
+          ))
+        ) : (
+          <tr>
+            <td colSpan={6} className="text-center">
+              No Students
+            </td>
+          </tr>
+        )}
       </tbody>
     </Table>
   );
+};
+
+StudentsTable.propTypes = {
+  students: PropTypes.array,
+  deleteStudent: PropTypes.func,
+  editStudent: PropTypes.func,
 };
 
 export default StudentsTable;
