@@ -8,7 +8,7 @@ const Header = () => {
           EDU CRM
         </Link>
 
-        <ul className=" d-flex justify-content-between gap-5">
+        <ul className=" d-flex m-0 justify-content-between gap-5">
           <li>
             <NavLink
               className="text-white fs-5 link-opacity-75-hover"
