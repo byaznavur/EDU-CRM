@@ -7,3 +7,5 @@ export const groups = [
   "Vue JS",
   "Foundation",
 ];
+
+export const levels = ["Intern", "Junior", "Middle", "Senior", "Team Lead"];
