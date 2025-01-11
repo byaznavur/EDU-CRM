@@ -1,4 +1,5 @@
 import { PropTypes } from "prop-types";
+import { memo } from "react";
 import { MdEdit, MdDelete } from "react-icons/md";
 const StudentsCard = ({
   firstName,
@@ -10,6 +11,8 @@ const StudentsCard = ({
   deleteStudent,
   editStudent,
 }) => {
+  console.log("Students Card");
+
   return (
     <tr>
       <td>{order}</td>
@@ -46,5 +49,5 @@ StudentsCard.propTypes = {
   deleteStudent: PropTypes.func,
   editStudent: PropTypes.func,
 };
-
-export default StudentsCard;
+const MemoStudentsCard = memo(StudentsCard);
+export default MemoStudentsCard;

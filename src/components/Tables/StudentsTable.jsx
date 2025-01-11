@@ -1,7 +1,21 @@
 import { Table } from "react-bootstrap";
 import PropTypes from "prop-types";
 import StudentsCard from "../Cards/StudentsCard";
-const StudentsTable = ({ students, deleteStudent, editStudent }) => {
+import { memo } from "react";
+const StudentsTable = ({
+  students,
+  deleteStudent,
+  editStudent,
+  search,
+  group,
+}) => {
+  console.log("Students Table");
+  let results = students.filter((student) =>
+    student.firstName.toLowerCase().includes(search)
+  );
+  if (group !== "all") {
+    results = students.filter((student) => student.group === group);
+  }
   return (
     <Table striped bordered hover className="mt-3">
       <thead>
@@ -15,8 +29,8 @@ const StudentsTable = ({ students, deleteStudent, editStudent }) => {
         </tr>
       </thead>
       <tbody>
-        {students.length !== 0 ? (
-          students.map((student, i) => (
+        {results.length !== 0 ? (
+          results.map((student, i) => (
             <StudentsCard
               {...student}
               order={i + 1}
@@ -39,8 +53,10 @@ const StudentsTable = ({ students, deleteStudent, editStudent }) => {
 
 StudentsTable.propTypes = {
   students: PropTypes.array,
+  search: PropTypes.string,
+  group: PropTypes.string,
   deleteStudent: PropTypes.func,
   editStudent: PropTypes.func,
 };
-
-export default StudentsTable;
+const MemoStudentsTable = memo(StudentsTable);
+export default MemoStudentsTable;

@@ -10,6 +10,7 @@ const StudentsForm = ({
   resetStudent,
   student: { firstName, lastName, age, group },
 }) => {
+  console.log("Students Form");
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
       <Form.Group className="mb-3" md="4" controlId="firstName">
