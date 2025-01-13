@@ -1,12 +1,17 @@
 import { Form, InputGroup } from "react-bootstrap";
-import { levels } from "../../data/groups";
-
-const TeachersHeader = () => {
+import PropTypes from "prop-types";
+import { memo } from "react";
+import { levels } from "../../data/levels";
+const TeachersHeader = ({ search, setSearch, level, setLevel }) => {
   return (
     <InputGroup className="mt-4">
-      <Form.Control placeholder="Searching" />
+      <Form.Control
+        value={search}
+        onChange={(e) => setSearch(e.target.value.trim().toLowerCase())}
+        placeholder="Searching"
+      />
       <InputGroup.Text id="basic-addon2">
-        <Form.Select>
+        <Form.Select value={level} onChange={(e) => setLevel(e.target.value)}>
           <option value="all">All Groups</option>
           {levels.map((level) => (
             <option value={level} key={level}>
@@ -19,4 +24,11 @@ const TeachersHeader = () => {
   );
 };
 
-export default TeachersHeader;
+TeachersHeader.propTypes = {
+  search: PropTypes.string,
+  setSearch: PropTypes.func,
+  level: PropTypes.string,
+  setLevel: PropTypes.func,
+};
+const MemoTeachersHeader = memo(TeachersHeader);
+export default MemoTeachersHeader;

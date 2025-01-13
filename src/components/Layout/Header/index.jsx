@@ -4,16 +4,13 @@ const Header = () => {
   return (
     <header className="bg-info py-4 fixed-top">
       <nav className="container d-flex justify-content-between align-items-center mx-auto">
-        <Link to="/home" className="fw-bold fs-3 text-white">
+        <Link to="/" className="fw-bold fs-3 text-white">
           EDU CRM
         </Link>
 
         <ul className=" d-flex m-0 justify-content-between gap-5">
           <li>
-            <NavLink
-              className="text-white fs-5 link-opacity-75-hover"
-              to="/home"
-            >
+            <NavLink className="text-white fs-5 link-opacity-75-hover" to="/">
               Home
             </NavLink>
           </li>
